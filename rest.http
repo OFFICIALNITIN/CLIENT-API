@@ -1,0 +1,24 @@
+### User sing up endpoint
+ POST http://localhost:3001/v1/user
+ Content-Type: application/json
+
+    {
+    "name":"hari",
+    "branch":"Computer engineering",
+    "rollno":"22241",
+    "year":"Second Year",
+    "address":"Pune",
+    "phoneno":"7841983996",
+    "email":"hari@gmail.com",
+    "password":"@Nitin147"
+}
+
+### User sing in endpoint
+ POST http://localhost:3001/v1/user/login
+ Content-Type: application/json
+
+    {
+    "email":"hari@gmail.com",
+    "password":"@Nitin147"
+}
+ 
