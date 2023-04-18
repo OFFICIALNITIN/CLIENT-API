@@ -1,20 +1,45 @@
 const jwt = require('jsonwebtoken')
+const { setJWT, getJWT } = require('../helper/redis.helper')
+const { storeUserRefreshJWT } = require('../model/user/User.model')
 
-const createAccessJWT = (payload) => {
+const createAccessJWT = async (email, _id) => {
 
-    const accessJWT = jwt.sign({ payload }, process.env.JWT_ACCESS_SECRET, {
-        expiresIn: "15m",
-    });
+    try {
+        const accessJWT = await jwt.sign({ email }, process.env.JWT_ACCESS_SECRET, {
+            expiresIn: "15m",
+        });
 
-    return Promise.resolve(accessJWT)
+        await setJWT(accessJWT, _id)
+
+        return Promise.resolve(accessJWT);
+    } catch (error) {
+        return Promise.reject(error);
+
+    }
 }
 
-const createRefreshJWT = (payload) => {
+const createRefreshJWT = async (email, _id) => {
+
+    try {
+
+
+        const refreshJWT = jwt.sign({ email }, process.env.JWT_REFRESH_SECRET, {
+            expiresIn: "30d",
+        });
+
+        await storeUserRefreshJWT(_id, refreshJWT)
+        return Promise.resolve(refreshJWT)
+
+    } catch (error) {
+        return Promise.reject(error)
+
+    }
 
     const refreshJWT = jwt.sign({ payload }, process.env.JWT_REFRESH_SECRET, {
         expiresIn: "30d",
     });
 
+    await storeUserRefreshJWT(_id, refreshJWT)
     return Promise.resolve(refreshJWT)
 }
 

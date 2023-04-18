@@ -3,14 +3,14 @@
  Content-Type: application/json
 
     {
-    "name":"hari",
+    "name":"Nitin",
     "branch":"Computer engineering",
-    "rollno":"22241",
+    "rollno":"22240",
     "year":"Second Year",
     "address":"Pune",
     "phoneno":"7841983996",
-    "email":"hari@gmail.com",
-    "password":"@Nitin147"
+    "email":"Nitin@gmail.com",
+    "password":"@Nitin123"
 }
 
 ### User sing in endpoint
@@ -18,7 +18,7 @@
  Content-Type: application/json
 
     {
-    "email":"hari@gmail.com",
-    "password":"@Nitin147"
+    "email":"Nitin@gmail.com",
+    "password":"@Nitin123"
 }
  
